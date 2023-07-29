@@ -8,6 +8,32 @@ body {
     font-family: Arial, sans-serif;
 }
 
+body.dark-theme {
+    background-color: #333;
+    color: #fff;
+}
+
+body.dark-theme .calculator {
+    background-color: #444; /* Dark mode calculator background color */
+}
+
+#themeToggle {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    padding: 10px;
+    border: none;
+    background-color: #0d899c;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#themeToggle:hover {
+    background-color: #444;
+}
+
+
 .calculator {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -49,10 +75,14 @@ button.operation {
 button.equals {
     grid-column: 4; /* Update from span 2 to span 4 */
     grid-row: 3 / span 4; /* Add the grid-row property to occupy 4 rows */
-    background-color: #2ecc71;
+    background-color: #0d899c;
     color: #fff;
 }
 
 button:hover {
     background-color: #e0e0e0;
+}
+
+.equals:hover {
+    background-color: #444;
 }
