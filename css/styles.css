@@ -13,7 +13,8 @@ body {
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: auto repeat(5, 60px);
     gap: 8px;
-    max-width: 300px;
+    width: 400px;
+    margin: 0 20px;
     padding: 16px;
     background-color: #fff;
     border-radius: 8px;
@@ -41,12 +42,13 @@ button {
 }
 
 button.operation {
-    grid-column: 4;
+    grid-row: 2;
     background-color: #d1efff;
 }
 
 button.equals {
-    grid-column: span 2;
+    grid-column: 4; /* Update from span 2 to span 4 */
+    grid-row: 3 / span 4; /* Add the grid-row property to occupy 4 rows */
     background-color: #2ecc71;
     color: #fff;
 }

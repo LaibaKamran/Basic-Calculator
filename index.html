@@ -4,30 +4,88 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/styles.css">
+    <!-- <script src="/js/javascript.js" defer></script> -->
     <title>Basic Calculator</title>
+
+    <script>
+        let lastCharacter = '';
+
+        function clearDisplay() {
+            document.getElementById("display").value = "";
+        }
+
+        function deleteLastCharacter() {
+            var display = document.getElementById("display");
+            display.value = display.value.slice(0, -1);
+        }
+
+       function appendCharacter(character) {
+            const display = document.getElementById("display");
+            const allowedOperators = ['+', '-', '*', '/'];
+
+            // Prevent multiple consecutive operators
+            if (allowedOperators.includes(character) && allowedOperators.includes(lastCharacter)) {
+                return;
+            }
+
+            // Prevent consecutive dots
+            if (character === '.' && display.value.includes('.')) {
+                return;
+            }
+
+            display.value += character;
+            lastCharacter = character;
+        }
+
+        
+        function calculate() {
+            const display = document.getElementById("display");
+            const expression = display.value;
+
+            // Check if the expression is empty or ends with an operator
+            if (!expression || ['+', '-', '*', '/'].includes(expression.slice(-1))) {
+                display.value = "Error: Incomplete Expression";
+                return;
+            }
+
+            try {
+                // Evaluate the expression and round to prevent overflow
+                const result = eval(expression);
+                const roundedResult = Math.round(result * 1000) / 1000;
+                
+                // Check for division by zero
+                if (roundedResult === Infinity || roundedResult === -Infinity) {
+                    display.value = "Error: Divide by Zero";
+                } else {
+                    display.value = roundedResult;
+                }
+            } catch (error) {
+                display.value = "Error: Invalid Expression";
+            }
+        }
+    </script>
 </head>
 <body>
     <div class="calculator">
-        <div class="display" id="display">0</div>
+        <input class="display" id="display" type="text"  readonly>
+        <button class="operation" onclick="appendCharacter('+')">+</button>
+        <button onclick="appendCharacter('7')">7</button>
+        <button onclick="appendCharacter('8')">8</button>
+        <button onclick="appendCharacter('9')">9</button>
+        <button class="operation" onclick="appendCharacter('-')">-</button>
+        <button onclick="appendCharacter('4')">4</button>
+        <button onclick="appendCharacter('5')">5</button>
+        <button onclick="appendCharacter('6')">6</button>
+        <button class="operation" onclick="appendCharacter('*')">*</button>
+        <button onclick="appendCharacter('1')">1</button>
+        <button onclick="appendCharacter('2')">2</button>
+        <button onclick="appendCharacter('3')">3</button>
+        <button class="operation" onclick="appendCharacter('/')">/</button>
+        <button onclick="appendCharacter('0')">0</button>
+        <button onclick="appendCharacter('.')">.</button>
         <button class="clear" onclick="clearDisplay()">C</button>
-        <button class="backspace" onclick="backspace()">&#9003;</button>
-        <button class="operation" onclick="appendOperator('+')">+</button>
-        <button onclick="appendDigit('7')">7</button>
-        <button onclick="appendDigit('8')">8</button>
-        <button onclick="appendDigit('9')">9</button>
-        <button class="operation" onclick="appendOperator('-')">-</button>
-        <button onclick="appendDigit('4')">4</button>
-        <button onclick="appendDigit('5')">5</button>
-        <button onclick="appendDigit('6')">6</button>
-        <button class="operation" onclick="appendOperator('*')">*</button>
-        <button onclick="appendDigit('1')">1</button>
-        <button onclick="appendDigit('2')">2</button>
-        <button onclick="appendDigit('3')">3</button>
-        <button class="operation" onclick="appendOperator('/')">/</button>
-        <button onclick="appendDigit('0')">0</button>
-        <button onclick="appendDecimal('.')">.</button>
+        <button class="backspace" onclick="deleteLastCharacter()">&#9003;</button>
         <button class="equals" onclick="calculate()">=</button>
     </div>
-    <script src="script.js"></script>
 </body>
 </html>
