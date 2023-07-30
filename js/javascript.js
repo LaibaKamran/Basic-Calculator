@@ -56,7 +56,7 @@ function calculate() {
 
 }
 
-// Function to check the user's theme preference in local storage
+
 // Function to check the user's theme preference in local storage
 function getThemePreference() {
     const themePreference = localStorage.getItem('themePreference');
@@ -83,3 +83,9 @@ function toggleTheme() {
         document.getElementById('themeToggle').textContent = 'Toggle Theme (Light)';
     }
 }
+
+ // Apply the user's preferred theme on page load
+ const preferredTheme = getThemePreference();
+ if (preferredTheme === 'dark') {
+     document.body.classList.add('dark-theme');
+ }
