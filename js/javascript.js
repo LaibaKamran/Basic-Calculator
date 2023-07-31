@@ -116,10 +116,10 @@ document.addEventListener("keydown", (event)=>{
     const allowedNumbers = ['0','1','2','3','4','5','6','7','8','9','.'];
     const allowedOperators = ['+','-','*','/'];
 
-    if(allowedNumbers.includes(key)){
+    if(allowedNumbers.includes(key) || allowedOperators.includes(key)){
         appendCharacter(key);
     }
-
+    
     else{
         return;
     }
