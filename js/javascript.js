@@ -119,6 +119,10 @@ document.addEventListener("keydown", (event)=>{
     if(allowedNumbers.includes(key) || allowedOperators.includes(key)){
         appendCharacter(key);
     }
+
+    else if(key === "Backspace"){
+        deleteLastCharacter();
+    }
     
     else{
         return;
