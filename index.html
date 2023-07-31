@@ -12,7 +12,7 @@
     <div class="calculator">
         <input class="display" id="display" type="text"  readonly>
         <button class="operation" onclick="appendCharacter('+')">+</button>
-        <button onclick="appendCharacter('7')">7</button>
+        <button onkeydown="appendCharacter('7')" onclick="appendCharacter('7')">7</button>
         <button onclick="appendCharacter('8')">8</button>
         <button onclick="appendCharacter('9')">9</button>
         <button class="operation" onclick="appendCharacter('-')">-</button>

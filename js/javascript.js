@@ -19,7 +19,7 @@ function appendCharacter(character) {
         return;
     }
 
-    // Prevent consecutive dots
+    // Prevent multiple dots
     if (character === '.' && display.value.includes('.')) {
         return;
     }
@@ -32,6 +32,7 @@ function appendCharacter(character) {
 function calculate() {
     const display = document.getElementById("display");
     const expression = display.value;
+   // let result = 0;
 
     // Check if the expression is empty or ends with an operator
     if (!expression || ['+', '-', '*', '/'].includes(expression.slice(-1))) {
@@ -39,8 +40,62 @@ function calculate() {
         return;
     }
 
+//     try{
+
+//     for(let i=0; i<expression.length; i++)
+//     {
+//         if( ['+', '-', '*', '/'].includes(expression[i])){
+//             if(result===0){
+//                 switch(expression[i]){
+//                     case '+':
+//                         result = parseFloat(expression[i-1]) + parseFloat(expression[i+1]);
+//                         break;
+//                     case '-':
+//                         result = parseFloat(expression[i-1]) - parseFloat(expression[i+1]);
+//                         break; 
+//                     case '*':
+//                         result = parseFloat(expression[i-1]) * parseFloat(expression[i+1]);
+//                         break;
+//                     case '/':
+//                         result = parseFloat(expression[i-1]) / parseFloat(expression[i+1]);
+//                         break; 
+//                     default:
+//                         display.value = "Error: Invalid expression.";          
+//                 }
+//             }
+//             else{
+//                 switch(expression[i]){
+//                     case '+':
+//                         result = result + parseFloat(expression[i+1]);
+//                         break;
+//                     case '-':
+//                         result = result - parseFloat(expression[i+1]);
+//                         break; 
+//                     case '*':
+//                         result = result * parseFloat(expression[i+1]);
+//                         break;
+//                     case '/':
+//                         result = result / parseFloat(expression[i+1]);
+//                         break; 
+//                     default:
+//                         display.value = "Error: Invalid expression.";    
+//                 }
+//             }    
+//         }
+//     }
+
+//     const roundedResult = Math.round(result*1000)/1000;
+//     if (roundedResult === Infinity || roundedResult === -Infinity) {
+//             display.value = "Error: Divide by Zero";
+//     } else {
+//             display.value = roundedResult;
+//         }
+// }
+// catch(error){
+//     display.value = "Error: Invalid Expression";
+// }
+
     try {
-        // Evaluate the expression and round to prevent overflow
         const result = eval(expression);
         const roundedResult = Math.round(result * 1000) / 1000;
         
@@ -55,6 +110,20 @@ function calculate() {
     }
 
 }
+
+document.addEventListener("keydown", (event)=>{
+    let key = event.key;
+    const allowedNumbers = ['0','1','2','3','4','5','6','7','8','9','.'];
+    const allowedOperators = ['+','-','*','/'];
+
+    if(allowedNumbers.includes(key)){
+        appendCharacter(key);
+    }
+
+    else{
+        return;
+    }
+});
 
 
 // Function to check the user's theme preference in local storage

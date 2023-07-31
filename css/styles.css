@@ -14,7 +14,7 @@ body.dark-theme {
 }
 
 body.dark-theme .calculator {
-    background-color: #444; /* Dark mode calculator background color */
+    background-color: #444;
 }
 
 #themeToggle {
@@ -73,8 +73,8 @@ button.operation {
 }
 
 button.equals {
-    grid-column: 4; /* Update from span 2 to span 4 */
-    grid-row: 3 / span 4; /* Add the grid-row property to occupy 4 rows */
+    grid-column: 4;
+    grid-row: 3 / span 4;
     background-color: #0d899c;
     color: #fff;
 }
