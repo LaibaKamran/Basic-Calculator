@@ -123,7 +123,12 @@ document.addEventListener("keydown", (event)=>{
     else if(key === "Backspace"){
         deleteLastCharacter();
     }
-    
+
+    else if(key === "Enter")
+    {
+        event.preventDefault();
+        calculate();
+    }
     else{
         return;
     }
